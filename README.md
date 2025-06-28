@@ -93,7 +93,7 @@ python ai_simulator.py
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 pathology-ai-patient-simulation/
