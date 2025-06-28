@@ -84,7 +84,7 @@ Remember: You are providing health education and support, not medical diagnosis 
             
             # Generate response
             response = self.client.chat.completions.create(
-                model="gpt-4",
+                model="gpt-4o",
                 messages=messages,
                 max_tokens=800,
                 temperature=0.7,

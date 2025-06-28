@@ -16,7 +16,7 @@ import uvicorn
 from .utils import logger, settings, validate_input, ResponseFormatter, Config
 from .scraper import initialize_knowledge_base, knowledge_base, medical_scraper
 from .gpt_router import process_medical_query, gpt_router
-from .cbt import get_cbt_recommendation, cbt_engine
+from .cbt import cbt_engine
 from .shifa import get_shifa_guidance, shifa_engine
 
 # Pydantic models for API requests
@@ -110,7 +110,7 @@ async def health_check():
                 "shifa_engine": {
                     "status": "operational", 
                     "available_duas": len(shifa_engine.duas),
-                    "prophetic_medicines": len(shifa_engine.prophetic_medicines)
+                    "prophetic_medicines": len(shifa_engine.prophetic_remedies)
                 },
                 "openai_api": {
                     "status": "configured" if settings.openai_api_key else "not_configured"
@@ -173,7 +173,13 @@ async def get_cbt_recommendation_endpoint(request: CBTRequest):
         if not validate_input(request.query):
             raise HTTPException(status_code=400, detail="Invalid query format")
         
-        cbt_response = await get_cbt_recommendation(request.query)
+        # Extract symptoms from query and get recommendation
+        from .utils import extract_keywords
+        symptoms = extract_keywords(request.query)
+        if not symptoms:
+            symptoms = ["stress"]  # Default if no specific symptoms found
+        
+        cbt_response = cbt_engine.recommend_exercise(symptoms, request.mood_level)
         
         return HealthResponse(
             success=True,
@@ -203,7 +209,11 @@ async def get_random_cbt_exercise(exercise_type: Optional[str] = None):
             except ValueError:
                 raise HTTPException(status_code=400, detail=f"Invalid exercise type. Available types: {[e.value for e in CBTExerciseType]}")
         
-        exercise = cbt_engine.get_random_exercise(exercise_enum)
+        # Get a recommended exercise with default symptoms
+        import random
+        default_symptoms = ["stress", "anxiety", "worry", "tension"]
+        random_symptoms = [random.choice(default_symptoms)]
+        exercise = cbt_engine.recommend_exercise(random_symptoms)
         
         return HealthResponse(
             success=True,
@@ -225,7 +235,7 @@ async def get_random_cbt_exercise(exercise_type: Optional[str] = None):
 async def get_daily_cbt_tip():
     """Get daily mental health tip"""
     try:
-        tip = cbt_engine.get_daily_tip()
+        tip = cbt_engine.get_daily_cbt_tip()
         
         return HealthResponse(
             success=True,
@@ -289,7 +299,7 @@ async def get_healing_dua(category: Optional[str] = None):
 async def get_prophetic_medicine(condition: Optional[str] = None):
     """Get prophetic medicine recommendation"""
     try:
-        medicine_data = shifa_engine.get_prophetic_medicine_recommendation(condition)
+        medicine_data = shifa_engine.get_prophetic_remedy(condition or "general")
         
         return HealthResponse(
             success=True,
@@ -646,7 +656,7 @@ async def get_admin_stats():
             "knowledge_base": knowledge_base.get_stats(),
             "cbt_exercises": len(cbt_engine.exercises),
             "shifa_duas": len(shifa_engine.duas),
-            "prophetic_medicines": len(shifa_engine.prophetic_medicines)
+            "prophetic_medicines": len(shifa_engine.prophetic_remedies)
         }
         
         return HealthResponse(

@@ -1,0 +1,44 @@
+[
+  {
+    "question": "What are the common symptoms of flu?",
+    "answer": "Common flu symptoms include fever, chills, muscle aches, cough, congestion, runny nose, headaches, and fatigue. Symptoms typically appear 1-4 days after exposure to the virus.",
+    "source": "Mayo Clinic",
+    "category": "acute_illness"
+  },
+  {
+    "question": "How can I manage high blood pressure naturally?",
+    "answer": "Natural approaches to managing blood pressure include maintaining a healthy weight, eating a balanced diet low in sodium, exercising regularly, limiting alcohol, managing stress, and getting adequate sleep.",
+    "source": "Mayo Clinic",
+    "category": "chronic_condition"
+  },
+  {
+    "question": "What should I do if I have persistent headaches?",
+    "answer": "For persistent headaches, keep a headache diary, maintain regular sleep patterns, stay hydrated, manage stress, and avoid known triggers. Consult a healthcare provider if headaches worsen or occur frequently.",
+    "source": "Mayo Clinic",
+    "category": "pain_management"
+  },
+  {
+    "question": "How do I know if I have anxiety?",
+    "answer": "Anxiety symptoms include excessive worry, restlessness, fatigue, difficulty concentrating, irritability, muscle tension, and sleep problems. If these symptoms persist and interfere with daily life, consider speaking with a healthcare professional.",
+    "source": "WebMD",
+    "category": "mental_health"
+  },
+  {
+    "question": "What are healthy ways to lose weight?",
+    "answer": "Healthy weight loss involves creating a moderate caloric deficit through balanced nutrition and regular physical activity. Focus on whole foods, portion control, staying hydrated, and gradual sustainable changes.",
+    "source": "WebMD",
+    "category": "lifestyle"
+  },
+  {
+    "question": "What foods help boost immune system?",
+    "answer": "Immune-boosting foods include citrus fruits (vitamin C), yogurt (probiotics), garlic, ginger, spinach, almonds, turmeric, and green tea. A balanced diet with variety supports overall immune function.",
+    "source": "Healthline",
+    "category": "lifestyle"
+  },
+  {
+    "question": "How much sleep do adults need?",
+    "answer": "Most adults need 7-9 hours of sleep per night. Quality sleep supports immune function, mental health, physical recovery, and cognitive performance. Consistent sleep schedules help maintain healthy sleep patterns.",
+    "source": "Healthline",
+    "category": "general_health"
+  }
+]

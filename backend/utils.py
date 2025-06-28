@@ -6,7 +6,7 @@ import logging
 import re
 from typing import Dict, List, Optional, Any
 from dotenv import load_dotenv
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 # Load environment variables
 load_dotenv()
@@ -28,7 +28,11 @@ class Config:
 class Settings(BaseSettings):
     """Application settings"""
     openai_api_key: str = Config.OPENAI_API_KEY
+    openai_model: str = "gpt-4o"
+    api_host: str = "0.0.0.0"
+    api_port: int = 8000
     debug: bool = os.getenv("DEBUG", "False").lower() == "true"
+    log_level: str = Config.LOG_LEVEL
     host: str = os.getenv("HOST", "0.0.0.0")
     port: int = int(os.getenv("PORT", "8000"))
     redis_url: str = os.getenv("REDIS_URL", "redis://localhost:6379")
@@ -36,6 +40,7 @@ class Settings(BaseSettings):
     
     class Config:
         env_file = ".env"
+        extra = "allow"  # Allow extra fields from .env
 
 settings = Settings()
 

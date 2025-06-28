@@ -8,7 +8,7 @@ import logging
 from datetime import datetime
 from enum import Enum
 
-from .utils import logger, sanitize_text, ResponseFormatter
+from .utils import logger, clean_text, ResponseFormatter, extract_keywords
 
 logger = logging.getLogger(__name__)
 
@@ -272,6 +272,24 @@ class CBTEngine:
 
 # Global instance
 cbt_engine = CBTEngine()
+
+def get_cbt_recommendation(query: str, category: str = None, mood_rating: int = None) -> Dict[str, Any]:
+    """Get CBT recommendation - wrapper function for the CBTEngine.recommend_exercise method"""
+    try:
+        # Extract symptoms/keywords from query
+        symptoms = extract_keywords(query)
+        
+        # If no symptoms found, use the category or general anxiety/stress
+        if not symptoms:
+            if category:
+                symptoms = [category]
+            else:
+                symptoms = ["anxiety", "stress"]
+        
+        return cbt_engine.recommend_exercise(symptoms, mood_rating)
+    except Exception as e:
+        logger.error(f"Error in get_cbt_recommendation: {str(e)}")
+        return cbt_engine._get_default_exercise()
 
 def main():
     """Test the CBT engine"""

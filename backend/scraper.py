@@ -119,6 +119,15 @@ class MedicalScraper:
                 processed_content.append(processed_item)
         
         return processed_content
+    
+    def save_faqs_to_file(self, faqs: List[Dict[str, str]], filename: str = "medical_faqs.json"):
+        """Save FAQs to a JSON file"""
+        try:
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(faqs, f, indent=2, ensure_ascii=False)
+            logger.info(f"Saved {len(faqs)} FAQs to {filename}")
+        except Exception as e:
+            logger.error(f"Error saving FAQs to file: {str(e)}")
 
 class MedicalKnowledgeBase:
     """Manages the medical knowledge base"""
@@ -200,8 +209,9 @@ class MedicalKnowledgeBase:
                                  for cat in self.categories}
         }
 
-# Global instance for easy access
+# Global instances for easy access
 medical_scraper = MedicalScraper()
+knowledge_base = MedicalKnowledgeBase()
 
 def initialize_knowledge_base():
     """Initialize the knowledge base with scraped data"""
@@ -209,7 +219,7 @@ def initialize_knowledge_base():
         logger.info("No existing FAQ file found, scraping fresh data...")
         faqs = medical_scraper.scrape_all_sources()
         processed_faqs = medical_scraper.preprocess_content(faqs)
-        scraper.save_faqs_to_file(processed_faqs)
+        medical_scraper.save_faqs_to_file(processed_faqs)
         knowledge_base.faqs = processed_faqs
         knowledge_base.categories = set(faq.get("category", "general") for faq in processed_faqs)
 
