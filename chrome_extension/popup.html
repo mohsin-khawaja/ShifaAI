@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShifaAI Health Companion</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span class="logo-icon">🌟</span>
+                <h1>ShifaAI</h1>
+            </div>
+            <p class="tagline">Your AI Health Companion</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-button active" data-tab="ask">🩺 Ask</button>
+            <button class="tab-button" data-tab="cbt">🧠 CBT</button>
+            <button class="tab-button" data-tab="shifa">🕌 Shifa</button>
+        </div>
+
+        <!-- Ask Tab Content -->
+        <div id="ask-tab" class="tab-content active">
+            <div class="input-section">
+                <textarea 
+                    id="question-input" 
+                    placeholder="Ask any health question... e.g., 'How can I manage stress?' or 'What helps with headaches?'"
+                    rows="3"
+                ></textarea>
+                
+                <div class="options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="include-cbt" checked>
+                        <span class="checkmark"></span>
+                        Include CBT coaching
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="include-shifa" checked>
+                        <span class="checkmark"></span>
+                        Include Islamic healing
+                    </label>
+                </div>
+                
+                <button id="ask-button" class="primary-button">
+                    <span id="ask-button-text">Ask ShifaAI</span>
+                    <span id="ask-loading" class="loading-spinner" style="display: none;">⏳</span>
+                </button>
+            </div>
+            
+            <div id="response-section" class="response-section" style="display: none;">
+                <div id="response-content"></div>
+            </div>
+        </div>
+
+        <!-- CBT Tab Content -->
+        <div id="cbt-tab" class="tab-content">
+            <div class="input-section">
+                <h3>🧠 CBT Exercise Recommendation</h3>
+                <textarea 
+                    id="symptoms-input" 
+                    placeholder="Describe how you're feeling... e.g., 'anxious, stressed, overwhelmed'"
+                    rows="2"
+                ></textarea>
+                
+                <div class="mood-rating">
+                    <label>Current mood (1-10):</label>
+                    <input type="range" id="mood-slider" min="1" max="10" value="5">
+                    <span id="mood-value">5</span>
+                </div>
+                
+                <button id="cbt-button" class="primary-button">Get CBT Exercise</button>
+            </div>
+            
+            <div id="cbt-response" class="response-section" style="display: none;"></div>
+        </div>
+
+        <!-- Shifa Tab Content -->
+        <div id="shifa-tab" class="tab-content">
+            <div class="input-section">
+                <h3>🕌 Islamic Healing (Shifa)</h3>
+                
+                <div class="shifa-options">
+                    <div class="option-group">
+                        <h4>Get Healing Du'a:</h4>
+                        <select id="dua-category">
+                            <option value="">Choose category...</option>
+                            <option value="general">General healing</option>
+                            <option value="mental_health">Mental health/anxiety</option>
+                            <option value="pain_management">Pain relief</option>
+                            <option value="acute_illness">Fever/illness</option>
+                            <option value="protection">Protection</option>
+                        </select>
+                        <button id="dua-button" class="secondary-button">Get Du'a</button>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h4>Prophetic Medicine:</h4>
+                        <input type="text" id="condition-input" placeholder="Enter condition (e.g., cough, fatigue)">
+                        <button id="medicine-button" class="secondary-button">Get Remedy</button>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h4>Halal Verification:</h4>
+                        <input type="text" id="halal-input" placeholder="Enter ingredient/treatment">
+                        <button id="halal-button" class="secondary-button">Check Halal</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="shifa-response" class="response-section" style="display: none;"></div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="daily-tip" id="daily-tip">
+                <strong>💡 Daily Tip:</strong> <span id="tip-content">Loading...</span>
+            </div>
+            <div class="disclaimer">
+                <small>⚠️ For informational purposes only. Consult healthcare professionals for medical advice.</small>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 

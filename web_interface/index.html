@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShifaAI - Your AI Health Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🩺 ShifaAI</h1>
+                <span class="tagline">Your AI Health Companion</span>
+            </div>
+            
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#chat" class="nav-link">Chat</a>
+                <a href="#cbt" class="nav-link">CBT</a>
+                <a href="#shifa" class="nav-link">Shifa</a>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="btn-secondary" id="settings-btn">⚙️ Settings</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Your AI Health Companion:<br>
+                    <span class="gradient-text">Instant Medical Answers, CBT Coaching, and Holistic Healing</span>
+                </h1>
+                <p class="hero-description">
+                    Experience comprehensive health guidance with evidence-based medical information, 
+                    supportive CBT exercises, and authentic Islamic healing practices.
+                </p>
+                
+                <div class="hero-actions">
+                    <button class="btn-primary" onclick="scrollToSection('chat')">
+                        💬 Start Chat
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToSection('about')">
+                        📖 Learn More
+                    </button>
+                </div>
+                
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🩺</span>
+                        <span>Medical Q&A</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🧠</span>
+                        <span>CBT Coaching</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🕌</span>
+                        <span>Islamic Healing</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="health-card">
+                    <div class="card-header">
+                        <h3>Health Question</h3>
+                        <span class="status-indicator">🟢 Active</span>
+                    </div>
+                    <div class="card-content">
+                        <p>"How can I manage anxiety naturally?"</p>
+                        <div class="response-preview">
+                            <span class="typing-indicator">ShifaAI is typing...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section id="chat" class="chat-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">💬 Ask ShifaAI</h2>
+                <p class="section-description">
+                    Get comprehensive health guidance with medical information, CBT exercises, and Islamic healing practices.
+                </p>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-status">
+                        <span class="status-dot"></span>
+                        <span>ShifaAI is online</span>
+                    </div>
+                    <div class="chat-options">
+                        <label class="option-toggle">
+                            <input type="checkbox" id="include-cbt-web" checked>
+                            <span class="toggle-label">🧠 CBT Guidance</span>
+                        </label>
+                        <label class="option-toggle">
+                            <input type="checkbox" id="include-shifa-web" checked>
+                            <span class="toggle-label">🕌 Islamic Healing</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages-web">
+                    <div class="message assistant">
+                        <div class="message-avatar">🩺</div>
+                        <div class="message-content">
+                            <p>السلام عليكم and welcome! I'm ShifaAI, your AI health companion. I'm here to provide evidence-based health information, supportive CBT exercises, and authentic Islamic healing guidance.</p>
+                            <p>How can I help you today?</p>
+                            <div class="message-disclaimer">
+                                ⚠️ For medical emergencies, contact emergency services immediately
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <div class="input-container">
+                        <textarea 
+                            id="chat-input-web" 
+                            placeholder="Ask your health question..." 
+                            rows="2"
+                        ></textarea>
+                        <button class="send-btn" id="send-btn-web">
+                            <span id="send-text-web">Send</span>
+                            <span id="loading-web" class="loading-spinner hidden">⏳</span>
+                        </button>
+                    </div>
+                    <div class="input-footer">
+                        <small>
+                            Press Enter to send • Shift+Enter for new line • 
+                            Educational purposes only - Always consult healthcare professionals
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CBT Section -->
+    <section id="cbt" class="cbt-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🧠 CBT Coaching</h2>
+                <p class="section-description">
+                    Access personalized Cognitive Behavioral Therapy exercises and tools for mental wellness.
+                </p>
+            </div>
+            
+            <div class="cbt-grid">
+                <!-- CBT Exercise Generator -->
+                <div class="cbt-card">
+                    <div class="card-header">
+                        <h3>Exercise Recommendation</h3>
+                        <span class="card-icon">🎯</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label>How are you feeling?</label>
+                            <select id="mood-select-web">
+                                <option value="">Select your mood...</option>
+                                <option value="1">Very Low</option>
+                                <option value="2">Low</option>
+                                <option value="3">Moderate</option>
+                                <option value="4">Good</option>
+                                <option value="5">Excellent</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Main concern (optional)</label>
+                            <input type="text" id="concern-web" placeholder="e.g., anxiety, stress, worry">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Available time</label>
+                            <select id="time-select-web">
+                                <option value="5">5 minutes</option>
+                                <option value="10" selected>10 minutes</option>
+                                <option value="15">15 minutes</option>
+                                <option value="20">20 minutes</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn-primary full-width" id="get-exercise-web">
+                            Get Personalized Exercise
+                        </button>
+                        
+                        <div id="exercise-result-web" class="result-card hidden">
+                            <div id="exercise-content-web"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thought Record Tool -->
+                <div class="cbt-card">
+                    <div class="card-header">
+                        <h3>Thought Record</h3>
+                        <span class="card-icon">📝</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label>Situation</label>
+                            <textarea id="situation-web" placeholder="What happened?" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Automatic Thoughts</label>
+                            <textarea id="thoughts-web" placeholder="What went through your mind?" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Emotions</label>
+                            <textarea id="feelings-web" placeholder="How did you feel?" rows="2"></textarea>
+                        </div>
+                        
+                        <button class="btn-secondary full-width" id="analyze-thoughts-web">
+                            Analyze Thoughts
+                        </button>
+                        
+                        <div id="thought-analysis-web" class="result-card hidden">
+                            <div id="thought-content-web"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Daily CBT Tip -->
+                <div class="cbt-card daily-tip">
+                    <div class="card-header">
+                        <h3>Daily CBT Wisdom</h3>
+                        <span class="card-icon">💡</span>
+                    </div>
+                    <div class="card-content">
+                        <div id="daily-tip-content">
+                            <p class="tip-text" id="tip-text-web">Loading daily tip...</p>
+                            <div class="tip-date" id="tip-date-web"></div>
+                        </div>
+                        <button class="btn-outline" id="new-tip-btn">Get New Tip</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shifa Section -->
+    <section id="shifa" class="shifa-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🕌 Islamic Healing (Shifa)</h2>
+                <p class="section-description">
+                    Authentic Islamic guidance for health and wellness based on Quran and Sunnah.
+                </p>
+            </div>
+            
+            <div class="shifa-grid">
+                <!-- Du'a for Healing -->
+                <div class="shifa-card">
+                    <div class="card-header">
+                        <h3>Healing Du'a</h3>
+                        <span class="card-icon">🤲</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label>Condition or Concern</label>
+                            <input type="text" id="dua-condition-web" placeholder="e.g., anxiety, headache, general wellness">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="dua-category-web">
+                                <option value="">Auto-detect</option>
+                                <option value="physical">Physical</option>
+                                <option value="emotional">Emotional</option>
+                                <option value="spiritual">Spiritual</option>
+                                <option value="general">General</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn-primary full-width" id="get-dua-web">
+                            Get Healing Du'a
+                        </button>
+                        
+                        <div id="dua-result-web" class="result-card hidden">
+                            <div id="dua-content-web"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prophetic Remedies -->
+                <div class="shifa-card">
+                    <div class="card-header">
+                        <h3>Prophetic Remedies</h3>
+                        <span class="card-icon">🍯</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label>Health Concern</label>
+                            <input type="text" id="remedy-condition-web" placeholder="e.g., digestive issues, immunity, energy">
+                        </div>
+                        
+                        <button class="btn-secondary full-width" id="get-remedy-web">
+                            Get Prophetic Remedy
+                        </button>
+                        
+                        <div id="remedy-result-web" class="result-card hidden">
+                            <div id="remedy-content-web"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Halal Compliance Check -->
+                <div class="shifa-card">
+                    <div class="card-header">
+                        <h3>Halal Compliance</h3>
+                        <span class="card-icon">✅</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label>Treatment to Verify</label>
+                            <input type="text" id="halal-treatment-web" placeholder="Enter treatment or remedy">
+                        </div>
+                        
+                        <button class="btn-outline full-width" id="check-halal-web">
+                            Check Halal Status
+                        </button>
+                        
+                        <div id="halal-result-web" class="result-card hidden">
+                            <div id="halal-content-web"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About ShifaAI</h2>
+                    <p>
+                        ShifaAI is a comprehensive AI health companion that combines modern medical knowledge 
+                        with evidence-based mental health support and authentic Islamic healing practices.
+                    </p>
+                    
+                    <div class="feature-list">
+                        <div class="feature">
+                            <span class="feature-icon">🩺</span>
+                            <div>
+                                <h4>Medical FAQ Engine</h4>
+                                <p>Access to trusted medical information from reputable sources</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🧠</span>
+                            <div>
+                                <h4>CBT Coaching</h4>
+                                <p>Personalized cognitive behavioral therapy exercises and tools</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🕌</span>
+                            <div>
+                                <h4>Islamic Healing</h4>
+                                <p>Authentic du'as and prophetic remedies based on Quran and Sunnah</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="disclaimer-box">
+                        <h4>⚠️ Important Disclaimer</h4>
+                        <p>
+                            ShifaAI provides educational information only and is not a substitute for professional 
+                            medical advice, diagnosis, or treatment. Always consult qualified healthcare 
+                            professionals for medical concerns. In case of emergencies, contact emergency services immediately.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Integrated Approaches</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Educational</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="close-btn" id="close-settings">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>API Endpoint</label>
+                    <input type="text" id="api-endpoint-web" value="http://localhost:8000">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="dark-mode"> Dark Mode
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="save-history" checked> Save Chat History
+                    </label>
+                </div>
+                <button class="btn-primary" id="save-settings-web">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>🩺 ShifaAI</h3>
+                    <p>Your AI Health Companion</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Features</h4>
+                        <a href="#chat">Health Chat</a>
+                        <a href="#cbt">CBT Coaching</a>
+                        <a href="#shifa">Islamic Healing</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <a href="#about">About</a>
+                        <a href="#">Documentation</a>
+                        <a href="#">API</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 ShifaAI. Educational purposes only. Always consult healthcare professionals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

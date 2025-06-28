@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShifaAI - Your AI Health Companion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>🌟 ShifaAI</h1>
+                <p>Your AI Health Companion</p>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">🏠 Home</a>
+                <a href="#about" class="nav-link">ℹ️ About</a>
+                <a href="#features" class="nav-link">⭐ Features</a>
+                <a href="#api" class="nav-link">🔗 API</a>
+            </nav>
+        </header>
+
+        <main class="main">
+            <section id="home" class="section active">
+                <div class="hero">
+                    <h2>Ask Any Health Question</h2>
+                    <p>Get instant medical answers, CBT coaching, and Islamic healing guidance</p>
+                </div>
+
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages"></div>
+                    
+                    <div class="input-container">
+                        <div class="options-row">
+                            <label class="option">
+                                <input type="checkbox" id="includeCBT" checked>
+                                🧠 CBT Guidance
+                            </label>
+                            <label class="option">
+                                <input type="checkbox" id="includeShifa" checked>
+                                🌙 Shifa Guidance
+                            </label>
+                            <select id="moodSelect" class="mood-select">
+                                <option value="general">😊 General</option>
+                                <option value="anxious">😰 Anxious</option>
+                                <option value="depressed">😢 Depressed</option>
+                                <option value="stressed">😤 Stressed</option>
+                                <option value="overwhelmed">🤯 Overwhelmed</option>
+                                <option value="angry">😠 Angry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-row">
+                            <textarea 
+                                id="messageInput" 
+                                placeholder="Ask any health question..."
+                                rows="3"
+                            ></textarea>
+                            <button id="sendButton" class="send-button">
+                                <span id="sendText">Send</span>
+                                <div id="sendSpinner" class="spinner" style="display: none;">⏳</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="action-btn" data-action="cbt">🧠 Quick CBT Exercise</button>
+                    <button class="action-btn" data-action="dua">📿 Healing Du'a</button>
+                    <button class="action-btn" data-action="tips">💡 Daily Tips</button>
+                    <button class="action-btn" data-action="emergency">🚨 Emergency Info</button>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <h2>About ShifaAI</h2>
+                <div class="about-content">
+                    <p>ShifaAI is your comprehensive AI health companion that combines modern medical knowledge with holistic healing approaches.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h3>🩺 Medical Q&A</h3>
+                            <p>Get evidence-based medical information powered by GPT-4, with context from trusted medical sources.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3>🧠 CBT Coaching</h3>
+                            <p>Receive personalized Cognitive Behavioral Therapy exercises and mental health support.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3>🌙 Islamic Healing</h3>
+                            <p>Access authentic Islamic healing guidance, prophetic medicine, and healing du'as.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3>🤖 AI-Powered</h3>
+                            <p>Advanced AI technology providing personalized, contextual health guidance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <h4>⚠️ Important Disclaimer</h4>
+                        <p>ShifaAI provides general health information and should not replace professional medical advice. For medical emergencies or serious health concerns, please consult healthcare professionals immediately.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="section">
+                <h2>Features & Capabilities</h2>
+                <div class="capabilities">
+                    <div class="capability">
+                        <h3>🔍 Intelligent Question Analysis</h3>
+                        <ul>
+                            <li>Automatic categorization of health questions</li>
+                            <li>Context-aware responses using scraped medical data</li>
+                            <li>Personalized guidance based on mood and severity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="capability">
+                        <h3>🧠 Mental Health Support</h3>
+                        <ul>
+                            <li>CBT exercises tailored to your emotional state</li>
+                            <li>Thought record creation and analysis</li>
+                            <li>Cognitive distortion identification</li>
+                            <li>Daily mental health tips</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="capability">
+                        <h3>🌙 Islamic Wellness</h3>
+                        <ul>
+                            <li>Authentic healing du'as from Quran and Sunnah</li>
+                            <li>Prophetic medicine recommendations</li>
+                            <li>Halal remedy verification</li>
+                            <li>Islamic health principles</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="api" class="section">
+                <h2>API Documentation</h2>
+                <div class="api-docs">
+                    <div class="endpoint">
+                        <h3>POST /ask</h3>
+                        <p>Ask a health question and get comprehensive guidance</p>
+                        <pre><code>{
+  "question": "I'm feeling anxious lately",
+  "include_cbt": true,
+  "include_shifa": true,
+  "mood": "anxious"
+}</code></pre>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <h3>GET /cbt/exercise</h3>
+                        <p>Get a CBT exercise based on mood and severity</p>
+                        <pre><code>GET /cbt/exercise?mood=anxious&severity=7</code></pre>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <h3>GET /shifa/dua</h3>
+                        <p>Get a healing du'a for specific condition</p>
+                        <pre><code>GET /shifa/dua?condition=anxiety</code></pre>
+                    </div>
+                    
+                    <div class="endpoint">
+                        <h3>GET /health</h3>
+                        <p>Check API health status</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 ShifaAI - Made with ❤️ for holistic health and wellness</p>
+            <div class="footer-links">
+                <a href="https://github.com/mohsin-khawaja" target="_blank">GitHub</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

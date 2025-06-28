@@ -1,0 +1,10 @@
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_MODEL=gpt-4
+API_HOST=0.0.0.0
+API_PORT=8000
+DEBUG=True
+LOG_LEVEL=INFO
+
+# Optional: Add other service credentials as needed
+# POSTGRES_URL=postgresql://user:password@localhost/dbname
+# REDIS_URL=redis://localhost:6379 
