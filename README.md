@@ -58,7 +58,7 @@ cp sample_env .env
 npm run dev
 ```
 
-### 🌐 **Access Points**
+###**Access Points**
 
 - **Main Application**: http://localhost:3000
 - **API Documentation**: http://localhost:8000/api/health
