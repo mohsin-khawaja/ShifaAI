@@ -12,7 +12,7 @@ A modern, unified Node.js and React.js application that provides comprehensive A
 
 ---
 
-## 🚀 **Optimal Architecture**
+## **Optimal Architecture**
 
 **Frontend**: React.js with TypeScript, Tailwind CSS, and Framer Motion
 **Backend**: Node.js with Express.js and OpenAI integration
@@ -21,19 +21,19 @@ A modern, unified Node.js and React.js application that provides comprehensive A
 
 ---
 
-## ✨ **Features**
+## **Features**
 
-* **🩺 Medical Q&A**: Intelligent health question answering with AI and knowledge base
-* **🧠 CBT Coaching**: Personalized cognitive behavioral therapy exercises
-* **🌟 Shifa Guidance**: Authentic Islamic healing with du'as and prophetic medicine
-* **📱 Modern UI**: Responsive React interface with beautiful animations
-* **⚡ Real-time Chat**: Interactive chat interface with medical, CBT, and Shifa responses
-* **🔍 Knowledge Search**: Comprehensive medical FAQ search with relevance scoring
-* **📊 Dashboard**: Health insights, exercise tracking, and guidance history
+* **Medical Q&A**: Intelligent health question answering with AI and knowledge base
+* **CBT Coaching**: Personalized cognitive behavioral therapy exercises
+* **Shifa Guidance**: Authentic Islamic healing with du'as and prophetic medicine
+* **Modern UI**: Responsive React interface with beautiful animations
+* **Real-time Chat**: Interactive chat interface with medical, CBT, and Shifa responses
+* **Knowledge Search**: Comprehensive medical FAQ search with relevance scoring
+* **Dashboard**: Health insights, exercise tracking, and guidance history
 
 ---
 
-## 🛠 **Quick Start**
+## **Quick Start**
 
 ### Prerequisites
 
@@ -66,7 +66,7 @@ npm run dev
 
 ---
 
-## 📋 **Available Scripts**
+## **Available Scripts**
 
 ```bash
 # Development
@@ -85,7 +85,7 @@ npm test               # Run all tests
 
 ---
 
-## 🏗 **Project Structure**
+## **Project Structure**
 
 ```text
 shifaai/
@@ -111,7 +111,7 @@ shifaai/
 
 ---
 
-## 🔧 **API Endpoints**
+## **API Endpoints**
 
 ### Medical
 - `POST /api/medical/ask` - Ask health questions with AI responses
@@ -133,26 +133,26 @@ shifaai/
 
 ---
 
-## 🎯 **Key Benefits of This Architecture**
+## **Key Benefits of This Architecture**
 
-### **🚀 Performance**
+### ** Performance**
 - Single Node.js runtime for both frontend and backend
 - Optimized API calls with unified error handling
 - Built-in compression and security middleware
 
-### **🔧 Development Experience**
+### ** Development Experience**
 - Unified package management with npm
 - Concurrent development servers with hot reload
 - Shared TypeScript types between frontend and backend
 - Single deployment process
 
-### **📦 Deployment Simplicity**
+### ** Deployment Simplicity**
 - Single application to deploy
 - Static file serving in production
 - Environment-based configuration
 - Docker-ready architecture
 
-### **🛡 Security & Reliability**
+### ** Security & Reliability**
 - Helmet.js security headers
 - CORS configuration
 - Request validation and error handling
@@ -160,7 +160,7 @@ shifaai/
 
 ---
 
-## 🌟 **Production Deployment**
+## **Production Deployment**
 
 ```bash
 # Build for production
@@ -177,23 +177,23 @@ The application serves the React build files statically in production mode, maki
 
 ---
 
-## 🤝 **Contributing**
+## **Contributing**
 
 Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on setting up your environment, submitting PRs, and our code of conduct.
 
 ---
 
-## 📄 **License**
+## **License**
 
 This project is MIT licensed. See [LICENSE](./LICENSE) for details.
 
 ---
 
-## 📞 **Contact**
+## **Contact**
 
 Maintained by **Mohsin Khawaja**. Feel free to open issues or submit pull requests!
 
-**🩺 Experience the future of holistic health care with ShifaAI - where modern AI meets traditional healing wisdom.**
+** Experience the future of holistic health care with ShifaAI - where modern AI meets traditional healing wisdom.**
 
 # Single command to start everything:
 npm run dev
