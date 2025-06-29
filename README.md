@@ -1,136 +1,204 @@
 # ShifaAI
-# Pathology AI Patient Simulation
-
 **Your AI health companion: instant medical answers, supportive CBT coaching, and holistic healing guidance.**
 
-An AI-driven patient simulation platform for pathology and medical Q\&A that combines:
+A modern, unified Node.js and React.js application that provides comprehensive AI health support combining:
 
-* **Medical FAQ Scraper**: Automatically gathers frequently asked questions from trusted medical sources.
-* **GPT-4 Medical Engine**: Leverages GPT-4 API to provide accurate, up-to-date medical answers.
-* **Empathetic & Optimistic Tone**: Wraps answers in sympathetic language to encourage hope and improvement.
-* **CBT Coaching Module**: Appends simple Cognitive Behavioral Therapy exercises to each response.
-* **Islamic-Compliant “Shifa AI” Layer**: Integrates prophetic medicine recommendations and du‘ā based on authentic sources.
-* **CLI Demo**: `ai_simulator.py` for quick command-line interactions and demos.
-* **Chrome Extension UI**: Lightweight in-browser chat widget for easy access.
-
----
-
-## Features
-
-* **Web Scraping Pipeline**: Python-based scrapers (Scrapy/BeautifulSoup) to collect and preprocess medical FAQs.
-* **FastAPI Backend**: Exposes REST endpoints for Q\&A, CBT exercises, and Shifa recommendations.
-* **GPT-4 Orchestration**: Central router with system prompts for medical expertise and coaching.
-* **Modular CBT Engine**: ABC model, thought records, and guided exercises.
-* **Shifa Engine**: Curated du‘ā and prophetic medicines; ensures halal compliance.
-* **Containerized Services**: Docker and Docker Compose for local development and production.
-* **Automated Testing & CI**: Unit tests for each module and GitHub Actions workflows.
+* **Medical FAQ Engine**: Intelligent medical question answering with knowledge base search
+* **GPT-4 Medical Assistant**: AI-powered health guidance with empathetic responses
+* **CBT Coaching Module**: Evidence-based Cognitive Behavioral Therapy exercises and techniques
+* **Islamic-Compliant "Shifa" Layer**: Authentic du'as and prophetic medicine recommendations
+* **Modern Web Interface**: Beautiful React.js frontend with real-time chat capabilities
+* **Unified Node.js Backend**: Express.js API with comprehensive health endpoints
 
 ---
 
-## Architecture
+## 🚀 **Optimal Architecture**
 
-```text
-[Scraper] → [Preprocessor] → [GPT Router] → [CBT Engine] → [Shifa Engine] → [API]
-                   ↑                                  ↓
-             SNOMED/LOINC Glossary               CLI & Chrome Extension UI
-```
-
-> Full architecture details in `docs/architecture.md`.
+**Frontend**: React.js with TypeScript, Tailwind CSS, and Framer Motion
+**Backend**: Node.js with Express.js and OpenAI integration
+**Development**: Unified development environment with concurrent servers
+**Deployment**: Single application with static file serving for production
 
 ---
 
-## Getting Started
+## ✨ **Features**
+
+* **🩺 Medical Q&A**: Intelligent health question answering with AI and knowledge base
+* **🧠 CBT Coaching**: Personalized cognitive behavioral therapy exercises
+* **🌟 Shifa Guidance**: Authentic Islamic healing with du'as and prophetic medicine
+* **📱 Modern UI**: Responsive React interface with beautiful animations
+* **⚡ Real-time Chat**: Interactive chat interface with medical, CBT, and Shifa responses
+* **🔍 Knowledge Search**: Comprehensive medical FAQ search with relevance scoring
+* **📊 Dashboard**: Health insights, exercise tracking, and guidance history
+
+---
+
+## 🛠 **Quick Start**
 
 ### Prerequisites
 
-* Python 3.9+
-* `pip` or `poetry`
-* (Optional) Docker & Docker Compose
+* Node.js 16+ and npm
+* OpenAI API key (optional, fallback mode available)
 
-### Installation
+### Installation & Setup
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/pathology-ai-patient-simulation.git
-cd pathology-ai-patient-simulation
+git clone https://github.com/your-username/shifaai.git
+cd shifaai
 
-# Create & activate virtual environment
-python3 -m venv venv
-source venv/bin/activate
+# Install all dependencies (backend + frontend)
+npm run install:all
 
-# Install dependencies
-pip install -r requirements.txt
+# Set up environment variables
+cp sample_env .env
+# Edit .env with your OpenAI API key
+
+# Start development environment (both servers)
+npm run dev
 ```
 
-### Environment Variables
+### 🌐 **Access Points**
 
-Copy `sample_env` to `.env` and fill in your keys:
-
-```text
-OPENAI_API_KEY=your_openai_key_here
-# (Optional) Other service credentials
-```
-
-### Running the Backend
-
-```bash
-# Start FastAPI server
-uvicorn backend.app:app --reload
-```
-
-### CLI Demo
-
-```bash
-python ai_simulator.py
-```
-
-### Chrome Extension
-
-1. Open Chrome → `chrome://extensions/`
-2. Enable "Developer mode"
-3. Click "Load unpacked" and select `chrome_extension/`
-4. Use the popup to ask medical questions!
+- **Main Application**: http://localhost:3000
+- **API Documentation**: http://localhost:8000/api/health
+- **Backend API**: http://localhost:8000/api
 
 ---
 
-## 📁 Project Structure
+## 📋 **Available Scripts**
+
+```bash
+# Development
+npm run dev              # Start both backend and frontend
+npm run server:dev       # Start only Node.js backend
+npm run client:dev       # Start only React frontend
+
+# Production
+npm run build           # Build React app for production
+npm start              # Start production server
+
+# Utilities
+npm run install:all     # Install all dependencies
+npm test               # Run all tests
+```
+
+---
+
+## 🏗 **Project Structure**
 
 ```text
-pathology-ai-patient-simulation/
-├── ai_simulator.py             # CLI demo script
-├── backend/                    # FastAPI & core logic
-│   ├── app.py                  # Entry point
-│   ├── scraper.py              # FAQ scraping
-│   ├── preprocess.py           # Cleaning & tagging
-│   ├── gpt_router.py           # GPT-4 orchestration
-│   ├── cbt.py                  # CBT module
-│   ├── shifa.py                # Islamic-compliant logic
-│   └── utils.py                # Helpers & config
-├── chrome_extension/           # In-browser UI
-├── docs/                       # Architecture & setup docs
-├── tests/                      # Unit & integration tests
-├── .github/                    # CI workflows
-├── Dockerfile
-├── docker-compose.yml
-├── CONTRIBUTING.md
-├── LICENSE
+shifaai/
+├── server/                     # Node.js Express backend
+│   ├── index.js               # Main server file
+│   └── routes/                # API route modules
+│       ├── health.js          # Health check endpoints
+│       ├── medical.js         # Medical Q&A with OpenAI
+│       ├── cbt.js            # CBT exercises and recommendations
+│       ├── shifa.js          # Islamic healing guidance
+│       └── knowledge.js       # Medical knowledge base
+├── frontend/                   # React.js application
+│   ├── src/
+│   │   ├── components/        # React components
+│   │   │   ├── ChatInterface.tsx
+│   │   │   └── Dashboard.tsx
+│   │   └── services/
+│   │       └── api.ts         # API service layer
+│   └── public/                # Static assets
+├── package.json               # Root dependencies & scripts
 └── README.md
 ```
 
 ---
 
-## Contributing
+## 🔧 **API Endpoints**
+
+### Medical
+- `POST /api/medical/ask` - Ask health questions with AI responses
+- `GET /api/knowledge/search` - Search medical knowledge base
+- `GET /api/knowledge/categories` - Get medical categories
+
+### CBT (Cognitive Behavioral Therapy)
+- `GET /api/cbt/exercise` - Get random CBT exercise
+- `POST /api/cbt/recommendation` - Get personalized CBT recommendation
+- `GET /api/cbt/daily-tip` - Get daily CBT wisdom
+
+### Shifa (Islamic Healing)
+- `GET /api/shifa/dua` - Get healing du'a
+- `GET /api/shifa/prophetic-medicine` - Get prophetic medicine
+- `POST /api/shifa/guidance` - Get comprehensive Shifa guidance
+
+### System
+- `GET /api/health` - Health check and system status
+
+---
+
+## 🎯 **Key Benefits of This Architecture**
+
+### **🚀 Performance**
+- Single Node.js runtime for both frontend and backend
+- Optimized API calls with unified error handling
+- Built-in compression and security middleware
+
+### **🔧 Development Experience**
+- Unified package management with npm
+- Concurrent development servers with hot reload
+- Shared TypeScript types between frontend and backend
+- Single deployment process
+
+### **📦 Deployment Simplicity**
+- Single application to deploy
+- Static file serving in production
+- Environment-based configuration
+- Docker-ready architecture
+
+### **🛡 Security & Reliability**
+- Helmet.js security headers
+- CORS configuration
+- Request validation and error handling
+- Comprehensive logging
+
+---
+
+## 🌟 **Production Deployment**
+
+```bash
+# Build for production
+npm run build
+
+# Set production environment
+export NODE_ENV=production
+
+# Start production server
+npm start
+```
+
+The application serves the React build files statically in production mode, making it a single deployable unit.
+
+---
+
+## 🤝 **Contributing**
 
 Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on setting up your environment, submitting PRs, and our code of conduct.
 
 ---
 
-## License
+## 📄 **License**
 
 This project is MIT licensed. See [LICENSE](./LICENSE) for details.
 
 ---
 
-## Contact
+## 📞 **Contact**
 
 Maintained by **Mohsin Khawaja**. Feel free to open issues or submit pull requests!
+
+**🩺 Experience the future of holistic health care with ShifaAI - where modern AI meets traditional healing wisdom.**
+
+# Single command to start everything:
+npm run dev
+
+# Access points:
+# Frontend: http://localhost:3000
+# Backend API: http://localhost:8000/api
+# Health Check: http://localhost:8000/api/health

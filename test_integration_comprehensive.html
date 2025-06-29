@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShifaAI Integration Test - Comprehensive</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2563eb;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+        .test-section h2 {
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+        }
+        .success {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+        }
+        .error {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+        }
+        .loading {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            color: #92400e;
+        }
+        .info {
+            background: #dbeafe;
+            border: 1px solid #3b82f6;
+            color: #1e40af;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .stat-label {
+            color: #6b7280;
+            margin-top: 5px;
+        }
+        .response-content {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #2563eb;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🩺 ShifaAI Comprehensive Integration Test</h1>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalTests">0</div>
+                <div class="stat-label">Total Tests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="passedTests">0</div>
+                <div class="stat-label">Passed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="failedTests">0</div>
+                <div class="stat-label">Failed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="responseTime">0ms</div>
+                <div class="stat-label">Avg Response Time</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <button onclick="runAllTests()">🚀 Run All Tests</button>
+            <button onclick="clearResults()">🧹 Clear Results</button>
+            <button onclick="testFrontendAccess()">🌐 Test Frontend</button>
+        </div>
+
+        <!-- System Health Tests -->
+        <div class="test-section">
+            <h2>🔧 System Health Tests</h2>
+            <button onclick="testHealthCheck()">Health Check</button>
+            <button onclick="testBackendConnection()">Backend Connection</button>
+            <button onclick="testFrontendAccess()">Frontend Access</button>
+            <div id="healthResults"></div>
+        </div>
+
+        <!-- Medical Module Tests -->
+        <div class="test-section">
+            <h2>🩺 Medical Module Tests</h2>
+            <button onclick="testMedicalQuery()">Medical Query</button>
+            <button onclick="testKnowledgeSearch()">Knowledge Search</button>
+            <button onclick="testKnowledgeCategories()">Knowledge Categories</button>
+            <button onclick="testRandomFAQs()">Random FAQs</button>
+            <div id="medicalResults"></div>
+        </div>
+
+        <!-- CBT Module Tests -->
+        <div class="test-section">
+            <h2>🧠 CBT Module Tests</h2>
+            <button onclick="testCBTExercise()">CBT Exercise</button>
+            <button onclick="testCBTRecommendation()">CBT Recommendation</button>
+            <button onclick="testDailyCBTTip()">Daily CBT Tip</button>
+            <div id="cbtResults"></div>
+        </div>
+
+        <!-- Shifa Module Tests -->
+        <div class="test-section">
+            <h2>🌟 Shifa Module Tests</h2>
+            <button onclick="testShifaDua()">Healing Du'a</button>
+            <button onclick="testPropheticMedicine()">Prophetic Medicine</button>
+            <button onclick="testShifaGuidance()">Shifa Guidance</button>
+            <div id="shifaResults"></div>
+        </div>
+
+        <!-- Integration Tests -->
+        <div class="test-section">
+            <h2>🔗 Integration Tests</h2>
+            <button onclick="testFullWorkflow()">Full Workflow Test</button>
+            <button onclick="testErrorHandling()">Error Handling</button>
+            <button onclick="testPerformance()">Performance Test</button>
+            <div id="integrationResults"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000/api';
+        const FRONTEND_URL = 'http://localhost:3000';
+        
+        let testStats = {
+            total: 0,
+            passed: 0,
+            failed: 0,
+            responseTimes: []
+        };
+
+        function updateStats() {
+            document.getElementById('totalTests').textContent = testStats.total;
+            document.getElementById('passedTests').textContent = testStats.passed;
+            document.getElementById('failedTests').textContent = testStats.failed;
+            
+            const avgTime = testStats.responseTimes.length > 0 
+                ? Math.round(testStats.responseTimes.reduce((a, b) => a + b, 0) / testStats.responseTimes.length)
+                : 0;
+            document.getElementById('responseTime').textContent = avgTime + 'ms';
+        }
+
+        function addResult(containerId, title, success, message, responseTime = null) {
+            testStats.total++;
+            if (success) {
+                testStats.passed++;
+            } else {
+                testStats.failed++;
+            }
+            
+            if (responseTime) {
+                testStats.responseTimes.push(responseTime);
+            }
+            
+            updateStats();
+            
+            const container = document.getElementById(containerId);
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${success ? 'success' : 'error'}`;
+            
+            let content = `<strong>${title}</strong>: ${success ? '✅ PASSED' : '❌ FAILED'}`;
+            if (responseTime) {
+                content += ` (${responseTime}ms)`;
+            }
+            content += `<br><em>${message}</em>`;
+            
+            resultDiv.innerHTML = content;
+            container.appendChild(resultDiv);
+            
+            // Scroll to the result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function addResponse(containerId, title, data) {
+            const container = document.getElementById(containerId);
+            const responseDiv = document.createElement('div');
+            responseDiv.className = 'response-content';
+            responseDiv.innerHTML = `<strong>${title} Response:</strong><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            container.appendChild(responseDiv);
+        }
+
+        async function makeRequest(url, options = {}) {
+            const startTime = Date.now();
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    }
+                });
+                const responseTime = Date.now() - startTime;
+                const data = await response.json();
+                return { success: response.ok, data, responseTime, status: response.status };
+            } catch (error) {
+                const responseTime = Date.now() - startTime;
+                return { success: false, error: error.message, responseTime };
+            }
+        }
+
+        // System Health Tests
+        async function testHealthCheck() {
+            const result = await makeRequest(`${API_BASE}/health`);
+            addResult('healthResults', 'Health Check', result.success, 
+                result.success ? `Status: ${result.data.status}` : result.error, result.responseTime);
+            
+            if (result.success) {
+                addResponse('healthResults', 'Health Check', result.data);
+            }
+        }
+
+        async function testBackendConnection() {
+            const result = await makeRequest(`${API_BASE}/health`);
+            addResult('healthResults', 'Backend Connection', result.success, 
+                result.success ? 'Backend is accessible and responding' : 'Backend connection failed', result.responseTime);
+        }
+
+        async function testFrontendAccess() {
+            try {
+                const startTime = Date.now();
+                const response = await fetch(FRONTEND_URL);
+                const responseTime = Date.now() - startTime;
+                const text = await response.text();
+                const success = response.ok && text.includes('ShifaAI');
+                
+                addResult('healthResults', 'Frontend Access', success, 
+                    success ? 'Frontend is accessible and serving content' : 'Frontend access failed', responseTime);
+            } catch (error) {
+                addResult('healthResults', 'Frontend Access', false, `Frontend error: ${error.message}`);
+            }
+        }
+
+        // Medical Module Tests
+        async function testMedicalQuery() {
+            const result = await makeRequest(`${API_BASE}/medical/ask`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    question: "What are the symptoms of diabetes?"
+                })
+            });
+            
+            addResult('medicalResults', 'Medical Query', result.success, 
+                result.success ? 'Medical query processed successfully' : result.error, result.responseTime);
+            
+            if (result.success) {
+                addResponse('medicalResults', 'Medical Query', result.data);
+            }
+        }
+
+        async function testKnowledgeSearch() {
+            const result = await makeRequest(`${API_BASE}/knowledge/search?q=diabetes`);
+            addResult('medicalResults', 'Knowledge Search', result.success, 
+                result.success ? `Found ${result.data.data?.length || 0} results` : result.error, result.responseTime);
+            
+            if (result.success) {
+                addResponse('medicalResults', 'Knowledge Search', result.data);
+            }
+        }
+
+        async function testKnowledgeCategories() {
+            const result = await makeRequest(`${API_BASE}/knowledge/categories`);
+            addResult('medicalResults', 'Knowledge Categories', result.success, 
+                result.success ? `${result.data.data?.length || 0} categories available` : result.error, result.responseTime);
+        }
+
+        async function testRandomFAQs() {
+            const result = await makeRequest(`${API_BASE}/knowledge/random?count=3`);
+            addResult('medicalResults', 'Random FAQs', result.success, 
+                result.success ? `Retrieved ${result.data.data?.length || 0} random FAQs` : result.error, result.responseTime);
+        }
+
+        // CBT Module Tests
+        async function testCBTExercise() {
+            const result = await makeRequest(`${API_BASE}/cbt/exercise`);
+            addResult('cbtResults', 'CBT Exercise', result.success, 
+                result.success ? `Exercise: ${result.data.data?.name || 'Unknown'}` : result.error, result.responseTime);
+            
+            if (result.success) {
+                addResponse('cbtResults', 'CBT Exercise', result.data);
+            }
+        }
+
+        async function testCBTRecommendation() {
+            const result = await makeRequest(`${API_BASE}/cbt/recommendation`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    query: "I'm feeling anxious about work",
+                    mood_level: 6
+                })
+            });
+            
+            addResult('cbtResults', 'CBT Recommendation', result.success, 
+                result.success ? 'Personalized CBT recommendation received' : result.error, result.responseTime);
+            
+            if (result.success) {
+                addResponse('cbtResults', 'CBT Recommendation', result.data);
+            }
+        }
+
+        async function testDailyCBTTip() {
+            const result = await makeRequest(`${API_BASE}/cbt/daily-tip`);
+            addResult('cbtResults', 'Daily CBT Tip', result.success, 
+                result.success ? 'Daily tip retrieved successfully' : result.error, result.responseTime);
+        }
+
+        // Shifa Module Tests
+        async function testShifaDua() {
+            const result = await makeRequest(`${API_BASE}/shifa/dua`);
+            addResult('shifaResults', 'Healing Du\'a', result.success, 
+                result.success ? `Du'a: ${result.data.data?.category || 'Unknown'}` : result.error, result.responseTime);
+            
+            if (result.success) {
+                addResponse('shifaResults', 'Healing Du\'a', result.data);
+            }
+        }
+
+        async function testPropheticMedicine() {
+            const result = await makeRequest(`${API_BASE}/shifa/prophetic-medicine`);
+            addResult('shifaResults', 'Prophetic Medicine', result.success, 
+                result.success ? `Medicine: ${result.data.data?.name || 'Unknown'}` : result.error, result.responseTime);
+            
+            if (result.success) {
+                addResponse('shifaResults', 'Prophetic Medicine', result.data);
+            }
+        }
+
+        async function testShifaGuidance() {
+            const result = await makeRequest(`${API_BASE}/shifa/guidance`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    query: "I need healing guidance for anxiety",
+                    category: "anxiety"
+                })
+            });
+            
+            addResult('shifaResults', 'Shifa Guidance', result.success, 
+                result.success ? 'Comprehensive Shifa guidance received' : result.error, result.responseTime);
+            
+            if (result.success) {
+                addResponse('shifaResults', 'Shifa Guidance', result.data);
+            }
+        }
+
+        // Integration Tests
+        async function testFullWorkflow() {
+            addResult('integrationResults', 'Full Workflow', false, 'Starting comprehensive workflow test...', null);
+            
+            try {
+                // Test medical query
+                const medical = await makeRequest(`${API_BASE}/medical/ask`, {
+                    method: 'POST',
+                    body: JSON.stringify({ question: "What is hypertension?" })
+                });
+                
+                if (!medical.success) throw new Error('Medical query failed');
+                
+                // Test CBT recommendation
+                const cbt = await makeRequest(`${API_BASE}/cbt/recommendation`, {
+                    method: 'POST',
+                    body: JSON.stringify({ query: "I'm stressed about my health", mood_level: 7 })
+                });
+                
+                if (!cbt.success) throw new Error('CBT recommendation failed');
+                
+                // Test Shifa guidance
+                const shifa = await makeRequest(`${API_BASE}/shifa/guidance`, {
+                    method: 'POST',
+                    body: JSON.stringify({ query: "Help with healing", category: "healing" })
+                });
+                
+                if (!shifa.success) throw new Error('Shifa guidance failed');
+                
+                addResult('integrationResults', 'Full Workflow', true, 
+                    'All modules working together successfully - Medical, CBT, and Shifa integration complete');
+                
+            } catch (error) {
+                addResult('integrationResults', 'Full Workflow', false, `Workflow failed: ${error.message}`);
+            }
+        }
+
+        async function testErrorHandling() {
+            // Test invalid endpoint
+            const result = await makeRequest(`${API_BASE}/invalid-endpoint`);
+            const success = !result.success && result.status === 404;
+            
+            addResult('integrationResults', 'Error Handling', success, 
+                success ? 'Error handling working correctly (404 for invalid endpoint)' : 'Error handling not working as expected');
+        }
+
+        async function testPerformance() {
+            const testCount = 5;
+            const results = [];
+            
+            for (let i = 0; i < testCount; i++) {
+                const result = await makeRequest(`${API_BASE}/health`);
+                if (result.success) {
+                    results.push(result.responseTime);
+                }
+            }
+            
+            if (results.length === testCount) {
+                const avgTime = Math.round(results.reduce((a, b) => a + b, 0) / results.length);
+                const success = avgTime < 1000; // Less than 1 second average
+                
+                addResult('integrationResults', 'Performance Test', success, 
+                    `Average response time: ${avgTime}ms (${testCount} requests)`, avgTime);
+            } else {
+                addResult('integrationResults', 'Performance Test', false, 'Performance test failed - some requests failed');
+            }
+        }
+
+        async function runAllTests() {
+            clearResults();
+            
+            addResult('healthResults', 'Test Suite', false, 'Running comprehensive test suite...', null);
+            
+            // System Health Tests
+            await testHealthCheck();
+            await testBackendConnection();
+            await testFrontendAccess();
+            
+            // Medical Module Tests
+            await testMedicalQuery();
+            await testKnowledgeSearch();
+            await testKnowledgeCategories();
+            await testRandomFAQs();
+            
+            // CBT Module Tests
+            await testCBTExercise();
+            await testCBTRecommendation();
+            await testDailyCBTTip();
+            
+            // Shifa Module Tests
+            await testShifaDua();
+            await testPropheticMedicine();
+            await testShifaGuidance();
+            
+            // Integration Tests
+            await testFullWorkflow();
+            await testErrorHandling();
+            await testPerformance();
+            
+            // Final summary
+            const successRate = Math.round((testStats.passed / testStats.total) * 100);
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = `test-result ${successRate >= 80 ? 'success' : 'error'}`;
+            summaryDiv.innerHTML = `
+                <strong>🎯 Test Suite Complete</strong><br>
+                <em>Success Rate: ${successRate}% (${testStats.passed}/${testStats.total} tests passed)</em>
+            `;
+            document.getElementById('integrationResults').appendChild(summaryDiv);
+        }
+
+        function clearResults() {
+            testStats = { total: 0, passed: 0, failed: 0, responseTimes: [] };
+            updateStats();
+            
+            ['healthResults', 'medicalResults', 'cbtResults', 'shifaResults', 'integrationResults'].forEach(id => {
+                document.getElementById(id).innerHTML = '';
+            });
+        }
+
+        // Auto-run basic tests on page load
+        window.addEventListener('load', async () => {
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for page to settle
+            await testHealthCheck();
+            await testBackendConnection();
+            await testFrontendAccess();
+        });
+    </script>
+</body>
+</html> 
